@@ -1,6 +1,14 @@
 import os
-files = os.listdir()
-for item in files:
-	spaceless = item.replace(' ', '')
-	os.rename(item, spaceless)
+import tkinter
+from tkinter import filedialog
 
+path = filedialog.askdirectory()
+
+if path is not None:
+	for item in os.listdir(path):
+		fullpath = os.path.join(path, item)
+		spaceless = fullpath.replace(' ', '')
+		os.rename(fullpath, spaceless)
+	print("Finished")
+else:
+	print("Invalid directory")
